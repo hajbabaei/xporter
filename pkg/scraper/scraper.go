@@ -1,17 +1,28 @@
 package scraper
 
 import (
-	"xporter/pkg/domain"
-
 	twitterscraper "github.com/n0madic/twitter-scraper"
 )
 
-func Init(username, password string) *domain.XScraper {
+type XScraper struct {
+	Scraper *twitterscraper.Scraper
+}
+
+func Init(username, password string) *XScraper {
 	scraper := twitterscraper.New()
 	err := scraper.Login(username, password)
 	if err != nil {
 		panic(err)
 	}
 
-	return &domain.XScraper{Scraper: scraper}
+	return &XScraper{Scraper: scraper}
+}
+
+func (xs *XScraper) GetPost(postId string) *twitterscraper.Tweet {
+	tweet, err := xs.Scraper.GetTweet(postId)
+	if err != nil {
+		panic(err)
+	}
+
+	return tweet
 }
