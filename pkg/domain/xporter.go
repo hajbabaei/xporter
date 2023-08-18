@@ -1,6 +1,6 @@
 package domain
 
-import twitterscraper "github.com/n0madic/twitter-scraper"
+import "xporter/pkg/scraper"
 
 type XPost struct {
 	Id      string `json:"id" bson:"id"`
@@ -10,15 +10,11 @@ type XPost struct {
 }
 
 type XPorterService interface {
-	SetupScraper() *XScraper
+	SetupScraper() *scraper.XScraper
 	GetPost(postId string) (*XPost, error)
 }
 
-type XScraper struct {
-	Scraper *twitterscraper.Scraper
-}
-
 type ScraperService interface {
-	Init(username, password string) *XScraper
+	Init(username, password string) *scraper.XScraper
 	GetPost(postId string) (*XPost, error)
 }
