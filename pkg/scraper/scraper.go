@@ -2,15 +2,13 @@ package scraper
 
 import (
 	"fmt"
-	"os"
+	"xporter/pkg/domain"
 
 	twitterscraper "github.com/n0madic/twitter-scraper"
 )
 
-func main() {
+func Init(username, password string) (*domain.XScraper, error) {
 	scraper := twitterscraper.New()
-	username := os.Getenv("X_USERNAME")
-	password := os.Getenv("X_PASSWORD")
 	err := scraper.Login(username, password)
 	if err != nil {
 		panic(err)
