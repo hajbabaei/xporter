@@ -10,14 +10,15 @@ type XPost struct {
 }
 
 type XPorterService interface {
+	SetupScraper() *XScraper
 	GetPost(postId string) (*XPost, error)
 }
 
 type XScraper struct {
-	scraper *twitterscraper.Scraper
+	Scraper *twitterscraper.Scraper
 }
 
 type ScraperService interface {
-	Init(username, password string)
+	Init(username, password string) *XScraper
 	GetPost(postId string) (*XPost, error)
 }
