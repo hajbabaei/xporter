@@ -2,11 +2,10 @@ package app
 
 import (
 	"os"
-	"xporter/pkg/domain"
 	"xporter/pkg/scraper"
 )
 
-func SetupScraper() *domain.XScraper {
+func SetupScraper() *scraper.XScraper {
 	username := os.Getenv("X_USERNAME")
 	password := os.Getenv("X_PASSWORD")
 	xscraper := scraper.Init(username, password)
